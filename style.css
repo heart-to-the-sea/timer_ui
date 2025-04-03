@@ -1,0 +1,402 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #8e2de2, #4a00e0);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    transition: all 0.5s ease;
+}
+
+body.page-warning {
+    background: linear-gradient(135deg, #e22d2d, #e04a00);
+    animation: backgroundPulse 3s infinite;
+}
+
+@keyframes backgroundPulse {
+    0% {
+        background: linear-gradient(135deg, #e22d2d, #e04a00);
+    }
+    50% {
+        background: linear-gradient(135deg, #ff3b3b, #ff5e00);
+    }
+    100% {
+        background: linear-gradient(135deg, #e22d2d, #e04a00);
+    }
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    gap: 30px;
+}
+
+.left-side {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+
+.right-side {
+    width: 55%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.clock-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    padding: 40px 30px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    flex: 3;
+}
+
+.timer-container {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.timer-container:has(.timer-warning) {
+    background: rgba(255, 77, 77, 0.1);
+    border-color: rgba(255, 77, 77, 0.4);
+    box-shadow: 0 0 15px rgba(255, 77, 77, 0.3);
+}
+
+.timer {
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.timer-warning {
+    color: #ff4d4d;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.record-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    padding: 16px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+    height: 110%;
+    display: flex;
+    flex-direction: column;
+}
+
+.record-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.record-header h2 {
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.record-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    max-width: 300px;
+}
+
+.record-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.record-btn:active, .record-btn.active {
+    transform: translateY(0);
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.record-list {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.record-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 8px;
+    width: 100%;
+}
+
+.record-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.record-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.record-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.record-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px 8px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.record-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.empty-record {
+    text-align: center;
+    padding: 30px 0;
+    opacity: 0.5;
+    font-style: italic;
+}
+
+.time {
+    font-size: 7rem;
+    font-weight: 600;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+}
+
+.date {
+    font-size: 2.5rem;
+    font-weight: 300;
+    opacity: 0.8;
+    margin-bottom: 20px;
+}
+
+.second-progress-container {
+    width: 80%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.second-progress {
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    width: 0%;
+    border-radius: 3px;
+    transition: width 0.1s linear;
+}
+
+.clear-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.clear-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.clear-btn:active {
+    transform: scale(0.95);
+}
+
+/* 移动设备适配 */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .left-side, .right-side {
+        width: 90%;
+        height: auto;
+    }
+    
+    .record-container {
+        height: 300px;
+    }
+    
+    .time {
+        font-size: 5rem;
+    }
+    
+    .date {
+        font-size: 1.8rem;
+    }
+    
+    .button-container {
+        margin-top: -5px;
+    }
+    
+    .bottom-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .button-container, .timer-container {
+        width: 100%;
+    }
+    
+    .timer-container {
+        padding: 10px;
+    }
+    
+    .timer {
+        font-size: 1.2rem;
+    }
+}
+
+/* 小屏幕设备 */
+@media (max-width: 480px) {
+    .time {
+        font-size: 4rem;
+    }
+    
+    .date {
+        font-size: 1.5rem;
+    }
+    
+    .clock-container, .record-container {
+        padding: 15px;
+    }
+    
+    .record-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .record-btn {
+        padding: 10px 15px;
+        font-size: 1rem;
+    }
+    
+    .record-grid {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        gap: 8px;
+    }
+    
+    .record-item {
+        padding: 10px 8px;
+        font-size: 1rem;
+    }
+}
+
+/* 添加页面警告时的容器样式变化 */
+.page-warning .clock-container,
+.page-warning .record-container,
+.page-warning .timer-container {
+    border-color: rgba(255, 150, 150, 0.4);
+    box-shadow: 0 15px 25px rgba(255, 0, 0, 0.2);
+}
+
+.page-warning .second-progress {
+    background: rgba(255, 150, 150, 0.8);
+}
+
+.page-warning .record-btn {
+    background: rgba(255, 150, 150, 0.3);
+    border-color: rgba(255, 150, 150, 0.3);
+}
+
+.page-warning .record-btn:hover {
+    background: rgba(255, 150, 150, 0.4);
+}
+
+.page-warning .record-item {
+    background: rgba(255, 150, 150, 0.2);
+    border-color: rgba(255, 150, 150, 0.3);
+}
+
+.page-warning .record-item:hover {
+    background: rgba(255, 150, 150, 0.3);
+}

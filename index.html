@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时间显示</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <div class="clock-container">
+                <div class="time" id="time">00:00</div>
+                <div class="date" id="date">星期一, 1月1日</div>
+                <div class="second-progress-container">
+                    <div class="second-progress" id="secondProgress"></div>
+                </div>
+            </div>
+            <div class="bottom-container">
+                <div class="button-container">
+                    <button id="recordBtn" class="record-btn">记录当前时间</button>
+                </div>
+                <div class="timer-container">
+                    <div class="timer" id="timer">00:00</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right-side">
+            <div class="record-container">
+                <div class="record-header">
+                    <h2>时间记录</h2>
+                    <button id="clearBtn" class="clear-btn">清除所有</button>
+                </div>
+                <div class="record-list" id="recordList">
+                    <!-- 记录的时间将在这里显示 -->
+                    <div class="empty-record">暂无记录</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
